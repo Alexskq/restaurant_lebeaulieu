@@ -8,7 +8,7 @@
   --gold2:   #E8D5A3;
   --border:  #2C2416;
   --cream:   #F0E8D4;
-  --muted:   #8A7E6A;
+  --muted:   #9E9282;
 }
 
 @theme inline {
@@ -53,8 +53,8 @@ a:focus-visible, button:focus-visible {
 }
 
 @keyframes line-grow {
-  from { width: 0;    }
-  to   { width: 64px; }
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
 }
 
 @keyframes slow-zoom {
@@ -90,9 +90,11 @@ a:focus-visible, button:focus-visible {
 .hero-line-wrap:nth-child(1) .hero-line-inner { animation-delay: 0.28s; }
 .hero-line-wrap:nth-child(2) .hero-line-inner { animation-delay: 0.46s; }
 .hero-accent-line {
-  width: 0;
+  width: 64px;
   height: 2px;
   background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left center;
   animation: line-grow 0.5s 0.85s cubic-bezier(0.16,1,0.3,1) forwards;
 }
 .hero-tag   { opacity:0; animation: fade-up-in 0.6s 1.0s  cubic-bezier(0.16,1,0.3,1) forwards; }
@@ -187,7 +189,7 @@ a:focus-visible, button:focus-visible {
   .hero-desc,
   .hero-ctas,
   .hero-scroll  { opacity: 1 !important; transform: none !important; }
-  .hero-accent-line { width: 64px !important; }
+  .hero-accent-line { transform: scaleX(1) !important; }
   .fade-up      { opacity: 1 !important; transform: none !important; }
   .marquee-track { animation: none !important; }
   .hero-bg-img  { animation: none !important; }
