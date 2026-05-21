@@ -1,26 +1,150 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --dark:    #0D0B08;
+  --card:    #161209;
+  --card2:   #1C160C;
+  --gold:    #C9A84C;
+  --gold2:   #E8D5A3;
+  --border:  #2C2416;
+  --cream:   #F0E8D4;
+  --muted:   #8A7E6A;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-dark:   var(--dark);
+  --color-card:   var(--card);
+  --color-card2:  var(--card2);
+  --color-gold:   var(--gold);
+  --color-gold2:  var(--gold2);
+  --color-border: var(--border);
+  --color-cream:  var(--cream);
+  --color-muted:  var(--muted);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--dark);
+  color: var(--cream);
+  overflow-x: hidden;
+}
+
+/* ── ANIMATIONS HERO ─────────────────────────────── */
+@keyframes line-reveal {
+  from { transform: translateY(108%); }
+  to   { transform: translateY(0);    }
+}
+
+@keyframes fade-up-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes line-grow {
+  from { width: 0;    }
+  to   { width: 64px; }
+}
+
+@keyframes slow-zoom {
+  from { transform: scale(1.04); }
+  to   { transform: scale(1.1);  }
+}
+
+@keyframes bounce-y {
+  0%, 100% { transform: translateX(-50%) translateY(0);    }
+  50%       { transform: translateX(-50%) translateY(-8px); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0);     }
+  to   { transform: translateX(-50%);  }
+}
+
+/* ── HERO ────────────────────────────────────────── */
+.hero-eyebrow {
+  opacity: 0;
+  animation: fade-up-in 0.6s 0.15s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-line-wrap {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.04em;
+}
+.hero-line-inner {
+  display: block;
+  transform: translateY(108%);
+  animation: line-reveal 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-line-wrap:nth-child(1) .hero-line-inner { animation-delay: 0.28s; }
+.hero-line-wrap:nth-child(2) .hero-line-inner { animation-delay: 0.46s; }
+.hero-accent-line {
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  animation: line-grow 0.5s 0.85s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-tag   { opacity:0; animation: fade-up-in 0.6s 1.0s  cubic-bezier(0.16,1,0.3,1) forwards; }
+.hero-desc  { opacity:0; animation: fade-up-in 0.6s 1.15s cubic-bezier(0.16,1,0.3,1) forwards; }
+.hero-ctas  { opacity:0; animation: fade-up-in 0.6s 1.3s  cubic-bezier(0.16,1,0.3,1) forwards; }
+.hero-scroll {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: bounce-y 2.2s 2s ease-in-out infinite,
+             fade-up-in 0.5s 1.8s ease both;
+}
+.hero-scroll::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 36px;
+  margin: 0.4rem auto 0;
+  background: linear-gradient(to bottom, var(--muted), transparent);
+}
+.hero-bg-img {
+  animation: slow-zoom 20s ease-in-out infinite alternate;
+}
+
+/* ── MARQUEE ─────────────────────────────────────── */
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee 28s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+/* ── FADE-UP (scroll) ────────────────────────────── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ── NAVBAR ──────────────────────────────────────── */
+.nav-scrolled {
+  background: rgba(13,11,8,0.96) !important;
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border) !important;
+  padding-top: 0.875rem !important;
+  padding-bottom: 0.875rem !important;
+}
+
+/* ── MOBILE MENU ─────────────────────────────────── */
+.mobile-menu-open  { transform: translateX(0)    !important; }
+
+/* ── LIGHTBOX ────────────────────────────────────── */
+.lightbox-open { display: flex !important; }
+
+/* ── MAP FILTER ──────────────────────────────────── */
+.map-iframe {
+  filter: sepia(30%) saturate(50%) brightness(0.75) contrast(1.1);
+}
+
+/* ── MOBILE BODY PADDING (sticky CTA bar) ────────── */
+@media (max-width: 767px) {
+  body { padding-bottom: 72px; }
 }
