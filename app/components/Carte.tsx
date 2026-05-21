@@ -2,6 +2,25 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
+import { UtensilsCrossed, Moon, ShoppingBag } from "lucide-react";
+
+const services = [
+  {
+    icon: <UtensilsCrossed size={18} strokeWidth={1.5} />,
+    title: "Déjeuner",
+    desc: "Du lundi au samedi — 11h30 à 14h30",
+  },
+  {
+    icon: <Moon size={18} strokeWidth={1.5} />,
+    title: "Dîner",
+    desc: "Vendredi & samedi — 18h30 à 21h00",
+  },
+  {
+    icon: <ShoppingBag size={18} strokeWidth={1.5} />,
+    title: "Vente à emporter",
+    desc: "Sur commande — renseignez-vous par téléphone",
+  },
+];
 
 export default function Carte() {
   const ref = useRef<HTMLDivElement>(null);
@@ -26,10 +45,10 @@ export default function Carte() {
             Notre menu
           </p>
           <h2
-            className="font-[family-name:var(--font-display)] leading-[0.95] text-[var(--cream)]"
+            className="font-[family-name:var(--font-display-sc)] leading-[0.95] text-[var(--cream)]"
             style={{ fontSize: "clamp(2.8rem,5vw,4.2rem)" }}
           >
-            La <em className="text-[var(--gold)]">Carte</em>
+            La Carte
           </h2>
         </div>
 
@@ -55,8 +74,7 @@ export default function Carte() {
               <div
                 className="absolute top-0 left-0 w-12 h-12"
                 style={{
-                  background:
-                    "linear-gradient(135deg, var(--gold) 0%, transparent 60%)",
+                  background: "linear-gradient(135deg, var(--gold) 0%, transparent 60%)",
                   opacity: 0.6,
                 }}
               />
@@ -73,38 +91,29 @@ export default function Carte() {
               </p>
             </div>
 
-            {/* Services */}
-            <div className="fade-up flex flex-col gap-4">
-              {[
-                {
-                  icon: "🍽️",
-                  title: "Déjeuner",
-                  desc: "Du lundi au samedi — 11h30 à 14h30",
-                },
-                {
-                  icon: "🌙",
-                  title: "Dîner",
-                  desc: "Vendredi & samedi — 18h30 à 21h00",
-                },
-                {
-                  icon: "📦",
-                  title: "Vente à emporter",
-                  desc: "Sur commande — renseignez-vous par téléphone",
-                },
-              ].map((s) => (
+            {/* Service cards */}
+            <div className="fade-up flex flex-col gap-3">
+              {services.map((s) => (
                 <div
                   key={s.title}
                   className="flex items-start gap-4 p-4 rounded-lg"
                   style={{
-                    background: "var(--card)",
+                    background: "rgba(22,18,9,0.8)",
+                    backdropFilter: "blur(10px)",
                     border: "1px solid var(--border)",
                   }}
                 >
-                  <span className="text-2xl flex-shrink-0 mt-0.5">{s.icon}</span>
+                  <div
+                    className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 text-[var(--gold)]"
+                    style={{
+                      background: "rgba(201,168,76,0.1)",
+                      border: "1px solid rgba(201,168,76,0.2)",
+                    }}
+                  >
+                    {s.icon}
+                  </div>
                   <div>
-                    <p className="font-semibold text-[var(--cream)] text-sm mb-1">
-                      {s.title}
-                    </p>
+                    <p className="font-semibold text-[var(--cream)] text-sm mb-1">{s.title}</p>
                     <p className="text-[var(--muted)] text-sm">{s.desc}</p>
                   </div>
                 </div>
@@ -114,7 +123,7 @@ export default function Carte() {
             <div className="fade-up">
               <a
                 href="tel:+33327222872"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded bg-[var(--gold)] text-[var(--dark)] text-sm font-bold no-underline transition-all duration-200 hover:bg-[var(--gold2)] hover:-translate-y-px"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded bg-[var(--gold)] text-[var(--dark)] text-sm font-bold no-underline transition-all duration-200 hover:bg-[var(--gold2)] hover:-translate-y-px cursor-pointer"
               >
                 Réserver par téléphone
               </a>

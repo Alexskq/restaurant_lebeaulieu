@@ -36,7 +36,7 @@ export default function Galerie() {
               Photos
             </p>
             <h2
-              className="font-[family-name:var(--font-display)] leading-[0.95] text-[var(--cream)]"
+              className="font-[family-name:var(--font-display-sc)] leading-[0.95] text-[var(--cream)]"
               style={{ fontSize: "clamp(2.8rem,5vw,4.2rem)" }}
             >
               Le <em className="text-[var(--gold)]">Beaulieu</em> en images

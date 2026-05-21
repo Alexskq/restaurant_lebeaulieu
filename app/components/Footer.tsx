@@ -25,7 +25,7 @@ export default function Footer() {
           <div className="max-w-[280px]">
             <a
               href="#hero"
-              className="font-[family-name:var(--font-display)] text-2xl tracking-widest text-[var(--cream)] no-underline uppercase block mb-2"
+              className="font-[family-name:var(--font-display-sc)] text-2xl tracking-widest text-[var(--cream)] no-underline uppercase block mb-2"
             >
               Le <span className="text-[var(--gold)]">Beaulieu</span>
             </a>

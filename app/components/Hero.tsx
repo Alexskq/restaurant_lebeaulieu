@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden hero-grain"
     >
       {/* Background image with ken-burns zoom */}
       <div className="absolute inset-0 hero-bg-img">

@@ -48,7 +48,7 @@ export default function Navbar() {
             key={l.href}
             href={l.href}
             onClick={() => setOpen(false)}
-            className="font-[family-name:var(--font-display)] text-4xl text-[var(--cream)] no-underline tracking-wide transition-colors duration-200 hover:text-[var(--gold)]"
+            className="font-[family-name:var(--font-display-sc)] text-4xl text-[var(--cream)] no-underline tracking-wide transition-colors duration-200 hover:text-[var(--gold)]"
           >
             {l.label}
           </a>
@@ -72,7 +72,7 @@ export default function Navbar() {
           {/* Logo */}
           <a
             href="#hero"
-            className="font-[family-name:var(--font-display)] text-xl tracking-widest text-[var(--cream)] no-underline uppercase"
+            className="font-[family-name:var(--font-display-sc)] text-xl tracking-widest text-[var(--cream)] no-underline uppercase"
           >
             Le <span className="text-[var(--gold)]">Beaulieu</span>
           </a>
